@@ -1,43 +1,48 @@
 # ResumeMatch (Android)
 
-A premium-looking Android app that compares a **resume PDF** against a **job description**, returns a **match score**, highlights **matched/missing skills**, and generates an **ATS readiness score**.
+**ResumeMatch** is a premium-looking Android app that:
+- uploads a **resume PDF**
+- analyzes **ATS Readiness** (heuristic score)
+- computes **Job Match** against a pasted Job Description
+- shows **matched/missing skills** + improvement suggestions
 
-## Demo
-- **Backend (Live):** https://resume-match-api-gace.onrender.com  
-- **Swagger (API Docs):** https://resume-match-api-gace.onrender.com/docs
+This app consumes a live FastAPI backend deployed on Render.
 
-## Features
-- Pick a resume **PDF** from phone storage
-- Paste Job Description and get:
-  - Match score (0–100)
-  - Matched skills + Missing skills
-  - Suggestions to improve alignment
-- ATS Readiness Score (0–100) with signals:
-  - contact detection, section detection, bullet/keyword density, metrics/impact
+---
 
 ## Download (APK)
-Go to **Releases** and download the latest APK ZIP:
-1. Download the `.zip` from Releases
+✅ Get the latest build from **Releases**:  
+https://github.com/rehanu04/resumematch-android/releases
+
+**Install steps**
+1. Download the release `.zip` asset
 2. Extract it to get the `.apk`
-3. Install the APK (you may need to allow “Install unknown apps”)
+3. Install the APK on your Android device  
+   - If blocked: Settings → Security → **Install unknown apps** → allow Files/Chrome
 
-## How it works (High-level)
-Android App (Jetpack Compose + Retrofit)
-→ uploads PDF to FastAPI `/resume/upload`
-→ compares with JD using `/match`
-→ computes ATS readiness using `/ats`
+---
 
-## API Endpoints used
-- `POST /resume/upload` (multipart PDF)
-- `POST /match` (resume_id + job_description)
-- `POST /ats` (resume_id)
-- `GET /health`
+## Backend API
+- Repo: https://github.com/rehanu04/resume-match-api
+- Live API: https://resume-match-api-gace.onrender.com
+- Swagger UI: https://resume-match-api-gace.onrender.com/docs
+- Health: https://resume-match-api-gace.onrender.com/health
 
-## Tech Stack
-**Android:** Kotlin, Jetpack Compose, Retrofit, OkHttp  
-**Backend:** FastAPI, Uvicorn, PyPDF, Render
+---
 
-## Local backend (optional)
-If you want to run backend locally:
-```bash
-uvicorn app.main:app --reload
+## Features
+- 📄 Pick a **PDF resume** from device storage (Document Picker)
+- 🧠 ATS Readiness Score (0–100)
+  - contact detection (email/phone/links)
+  - section detection (education/skills/experience/projects)
+  - bullets + keyword density + metric signals
+- 🎯 Job Match Score (0–100)
+  - matched vs missing skills
+  - suggestions to improve alignment
+- 🖤 Dark premium UI (glass cards + chips + score bars)
+
+---
+Example in repo
+- `home.jpg`
+- `results.jpg`
+
