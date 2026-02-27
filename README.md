@@ -46,3 +46,56 @@ Example in repo
 - `home.jpg`
 - `results.jpg`
 
+
+---
+
+# 2) Backend repo README  
+Repo: `https://github.com/rehanu04/resume-match-api`
+
+:::
+
+```md
+# ResumeMatch API (FastAPI)
+
+FastAPI backend that powers the **ResumeMatch Android app**.
+
+It supports:
+- **Resume PDF upload** → text extraction + normalization + skill extraction
+- **ATS Readiness Score** (0–100, heuristic)
+- **Job Match Score** against a Job Description (0–100)
+- Matched/missing skills + suggestions
+
+---
+
+## Android App
+- Repo: https://github.com/rehanu04/resumematch-android
+- Download (APK): https://github.com/rehanu04/resumematch-android/releases
+
+---
+
+## Live Deployment
+- Live API: https://resume-match-api-gace.onrender.com
+- Swagger UI: https://resume-match-api-gace.onrender.com/docs
+- Health: https://resume-match-api-gace.onrender.com/health
+
+---
+
+## Endpoints
+### Health
+`GET /health`
+
+### Upload Resume (PDF)
+`POST /resume/upload`  
+**Body:** `multipart/form-data` with `file` (PDF)
+
+**Returns:**
+- `resume_id`
+- `skills` (curated skill set)
+- `extra_skills` (generic tech keywords not in curated list)
+- `text_chars`
+
+### ATS Readiness
+`POST /ats`  
+**Body:**
+```json
+{ "resume_id": "..." }
